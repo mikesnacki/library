@@ -91,6 +91,7 @@ export default class Addbook extends React.Component {
                                 placeholder="Enter Number of Pages"
                                 name="numPages"
                                 type="number"
+                                min="0"
                                 value={this.state.numPages}
                                 onChange={this.handleInputChange}
                                 autoComplete="off"

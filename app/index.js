@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import Addbook from "./components/Addbook"
 import Books from "./components/Books"
+import { base } from "./base"
 
 let books = [{
     id: 1,
@@ -38,6 +39,17 @@ class App extends React.Component {
         this.state = { books: books };
     }
 
+    componentWillMount() {
+        this.booksRef = base.syncState("books", {
+            context: this,
+            state: "books"
+        })
+    }
+
+    componentWillUnmount() {
+        base.removeBinding(this.booksRef)
+    }
+
     addBook(newBook) {
         books.unshift(newBook)
         this.setState({ books: books })
@@ -55,6 +67,7 @@ class App extends React.Component {
         book.read ? books.push(book) : books.unshift(book)
         this.setState({ books: books })
     }
+
 
     render() {
         return (

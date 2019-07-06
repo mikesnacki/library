@@ -52,9 +52,9 @@ export default class Addbook extends React.Component {
 
     render() {
         return (
-            <form ref="form" onSubmit={this.onSubmit} className="form">
-                <div className="library">
-                    <h2 className="header"> Add a book below</h2>
+            <div className="library">
+                <h2 className="header"> Add a book below</h2>
+                <form ref="form" onSubmit={this.onSubmit} className="form">
                     <div className="row">
                         <div className="column">
                             <label className="label">Book Title</label>
@@ -107,8 +107,8 @@ export default class Addbook extends React.Component {
                         </div>
                     </div>
                     <button type="submit" className="btn-submit" ><FaFolderPlus /></button>
-                </div >
-            </form>
+                </form>
+            </div >
         )
     }
 }

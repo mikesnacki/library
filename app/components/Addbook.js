@@ -12,10 +12,12 @@ export default class Addbook extends React.Component {
             author: "",
             numPages: "",
             read: "",
+            view: false,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.toggleView = this.toggleView.bind(this)
     }
 
     handleInputChange(event) {
@@ -28,9 +30,8 @@ export default class Addbook extends React.Component {
         });
     }
 
-
-    onSubmit(e) {
-        e.preventDefault();
+    onSubmit(event) {
+        event.preventDefault();
         var newBook = {
             title: this.refs.title.value,
             author: this.refs.author.value,
@@ -50,64 +51,72 @@ export default class Addbook extends React.Component {
         }
     }
 
+    toggleView() {
+        this.setState({
+            view: this.state.view === true ? false : true
+        })
+    }
+
     render() {
         return (
             <div className="library">
-                <h2 className="header"> Add a book below</h2>
-                <form ref="form" onSubmit={this.onSubmit} className="form">
-                    <div className="row">
-                        <div className="column">
-                            <label className="label">Book Title</label>
-                            <input
-                                className="input"
-                                placeholder="Enter Book Title"
-                                name="title"
-                                type="text"
-                                value={this.state.title}
-                                onChange={this.handleInputChange}
-                                autoComplete="off"
-                                ref="title"
-                                required
-                            />
+                <h2 className="header"> <button onClick={this.toggleView} className="btn-clear">Add a book below</button></h2>
+                {this.state.view === true &&
+                    <form ref="form" onSubmit={this.onSubmit} className="form">
+                        <div className="row">
+                            <div className="column">
+                                <label className="label">Book Title</label>
+                                <input
+                                    className="input"
+                                    placeholder="Enter Book Title"
+                                    name="title"
+                                    type="text"
+                                    value={this.state.title}
+                                    onChange={this.handleInputChange}
+                                    autoComplete="off"
+                                    ref="title"
+                                    required
+                                />
+                            </div>
+                            <div className="column">
+                                <label className="label">Author</label>
+                                <input
+                                    className="input"
+                                    placeholder="Enter Book Author"
+                                    name="author"
+                                    type="text"
+                                    value={this.state.author}
+                                    onChange={this.handleInputChange}
+                                    autoComplete="off"
+                                    ref="author"
+                                    required
+                                />
+                            </div>
+                            <div className="column">
+                                <label className="label">Number of Pages</label>
+                                <input
+                                    className="input"
+                                    placeholder="Enter Number of Pages"
+                                    name="numPages"
+                                    type="number"
+                                    min="0"
+                                    value={this.state.numPages}
+                                    onChange={this.handleInputChange}
+                                    autoComplete="off"
+                                    ref="numPages"
+                                    required
+                                />
+                            </div>
+                            <div className="column">
+                                <label className="label">Read Status</label>
+                                <select ref="readSelect" className="input select">
+                                    <option value="Read">Read</option>
+                                    <option value="Not Read">Not Read</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className="column">
-                            <label className="label">Author</label>
-                            <input
-                                className="input"
-                                placeholder="Enter Book Author"
-                                name="author"
-                                type="text"
-                                value={this.state.author}
-                                onChange={this.handleInputChange}
-                                autoComplete="off"
-                                ref="author"
-                                required
-                            />
-                        </div>
-                        <div className="column">
-                            <label className="label">Number of Pages</label>
-                            <input
-                                className="input"
-                                placeholder="Enter Number of Pages"
-                                name="numPages"
-                                type="number"
-                                min="0"
-                                value={this.state.numPages}
-                                onChange={this.handleInputChange}
-                                autoComplete="off"
-                                ref="numPages"
-                            />
-                        </div>
-                        <div className="column">
-                            <label className="label">Read Status</label>
-                            <select ref="readSelect" className="input select">
-                                <option value="Read">Read</option>
-                                <option value="Not Read">Not Read</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" className="btn-submit" ><FaFolderPlus /></button>
-                </form>
+                        <button type="submit" className="btn-submit" ><FaFolderPlus /></button>
+                    </form>}
             </div >
         )
     }

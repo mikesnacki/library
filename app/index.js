@@ -4,29 +4,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import Addbook from "./components/Addbook"
 import Books from "./components/Books"
-import { base } from "./base"
-
-let books = [{
-    id: 1,
-    title: "A Game of Thrones",
-    author: "George RR Martin",
-    pages: 694,
-    read: "Read"
-},
-{
-    id: 2,
-    title: "A Clash of Kings",
-    author: "George RR Martin",
-    pages: 768,
-    read: "Read"
-},
-{
-    id: 3,
-    title: "A Storm of Swords",
-    author: "George RR Martin",
-    pages: 973,
-    read: "Read"
-}]
+import base from "./data/firebase"
 
 class App extends React.Component {
 
@@ -36,53 +14,54 @@ class App extends React.Component {
         this.addBook = this.addBook.bind(this)
         this.removeBook = this.removeBook.bind(this)
         this.toggleRead = this.toggleRead.bind(this)
-        this.state = { books: books };
+        this.state = {
+            books: []
+        };
     }
 
     componentWillMount() {
-        this.booksRef = base.syncState("books", {
+        console.log({ base })
+        base.syncState("books", {
             context: this,
-            state: "books"
+            state: "books",
         })
     }
 
-    componentWillUnmount() {
-        base.removeBinding(this.booksRef)
-    }
-
     addBook(newBook) {
+        const { books } = this.state
         books.unshift(newBook)
-        this.setState({ books: books })
+        this.setState({ books })
     }
 
     removeBook(bookIndex) {
+        const { books } = this.state
         books.splice(bookIndex, 1)
-        this.setState({ books: books })
+        this.setState({ books })
     }
 
     toggleRead(bookIndex) {
+        const { books } = this.state
         var book = books[bookIndex]
         books.splice(bookIndex, 1)
         book.read = book.read === "Read" ? "Not Read" : "Read"
         book.read ? books.push(book) : books.unshift(book)
-        this.setState({ books: books })
+        this.setState({ books })
     }
-
 
     render() {
         return (
             <div>
                 <Addbook addBook={this.addBook} />
                 <Books
-                    books={this.props.books}
+                    books={this.state.books}
                     removeBook={this.removeBook}
                     toggleRead={this.toggleRead}
                 />
-            </div>
+            </div >
         )
     }
 }
 
 ReactDOM.render(
-    <App books={books} />,
+    <App />,
     document.getElementById('app'))

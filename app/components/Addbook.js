@@ -60,7 +60,7 @@ export default class Addbook extends React.Component {
     render() {
         return (
             <div className="library">
-                <h2 className="header"> <button onClick={this.toggleView} className=" btn-clear">Add a book below</button></h2>
+                <h2 className="header"> <button onClick={this.toggleView} className=" btn-clear">{this.state.view === false ? "Click To Add Book" : "Add Book Below"}</button></h2>
                 {this.state.view === true &&
                     <form ref="form" onSubmit={this.onSubmit} className="form">
                         <div className="row">

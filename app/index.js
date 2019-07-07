@@ -15,11 +15,12 @@ class App extends React.Component {
         this.removeBook = this.removeBook.bind(this)
         this.toggleRead = this.toggleRead.bind(this)
         this.state = {
-            books: []
+            books: [{ title: "t", author: "a", pages: 2, read: "Read" }]
         };
     }
 
     componentWillMount() {
+        console.log(this.state.books)
         base.syncState("books", {
             context: this,
             state: "books",
@@ -28,8 +29,12 @@ class App extends React.Component {
 
     addBook(newBook) {
         const { books } = this.state
-        books.unshift(newBook)
-        this.setState({ books })
+        {
+            books.length = 0 ? this.setState({ books: newBook }) :
+                this.setState({
+                    books: this.state.books.concat([newBook])
+                })
+        }
     }
 
     removeBook(bookIndex) {
@@ -61,6 +66,4 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))

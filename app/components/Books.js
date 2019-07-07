@@ -15,15 +15,17 @@ export default class Library extends React.Component {
                     <h4 className="column">Read Status</h4>
                     <h4 className="column">Delete</h4>
                 </div>
-                {this.props.books.map((book, index) => {
-                    return <Book
-                        book={book}
-                        key={index}
-                        index={index}
-                        removeBook={this.props.removeBook}
-                        toggleRead={this.props.toggleRead}
-                    />
-                })}
+                {
+                    this.props.books.map((book, index) => {
+                        return <Book
+                            book={book}
+                            key={index}
+                            index={index}
+                            removeBook={this.props.removeBook}
+                            toggleRead={this.props.toggleRead}
+                        />
+                    })
+                }
             </div >
         )
     }

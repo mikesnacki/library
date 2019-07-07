@@ -23,6 +23,7 @@ ul, li{
     border: none;
     border: solid #4d4e4f 2px;
     padding: 1vh;
+    font-size: calc(10px + .5vw)
 }
 
 .select{
@@ -107,13 +108,14 @@ svg{
     background-color: transparent;
     font-weight: 600;
     color: white;
+    font-size: calc(10px + .5vw)
 }
 
 .btn-clear{
     background-color: transparent;
     color: inherit;
     font-weight: inherit;
-    font-size: 100%;
+    font-size: inherit;
     font-family: inherit;
     border: 0;
     padding: 0;

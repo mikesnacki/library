@@ -20,7 +20,6 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        console.log({ base })
         base.syncState("books", {
             context: this,
             state: "books",

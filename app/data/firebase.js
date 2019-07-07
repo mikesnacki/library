@@ -4,13 +4,13 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 
 var app = firebase.initializeApp({
-    apiKey: "AIzaSyDq7tXpfZuN8YKrRuuVPw4CR8wIBU03fZM",
-    authDomain: "library-8c110.firebaseapp.com",
+    apiKey: process.env.REACT_APP_FIREBASE_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
     databaseURL: "https://library-8c110.firebaseio.com",
-    projectId: "library-8c110",
-    storageBucket: "",
-    messagingSenderId: "1043489108346",
-    appId: "1:1043489108346:web:e949a8f471ce3af4"
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
 });
 
 var db = firebase.database(app);

@@ -7,7 +7,7 @@ export default class Library extends React.Component {
     render() {
         return (
             < div className="library" >
-                <h1 className="header">Library</h1>
+                <h2 className="header">Library</h2>
                 <div className="row label">
                     <h4 className="column">Title</h4>
                     <h4 className="column">Author</h4>

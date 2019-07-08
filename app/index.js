@@ -15,7 +15,7 @@ class App extends React.Component {
         this.removeBook = this.removeBook.bind(this)
         this.toggleRead = this.toggleRead.bind(this)
         this.state = {
-            books: [{ title: "t", author: "a", pages: 2, read: "Read" }]
+            books: []
         };
     }
 

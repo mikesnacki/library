@@ -15,7 +15,7 @@ export default class Library extends React.Component {
                     <h4 className="column">Read Status</h4>
                     <h4 className="column">Delete</h4>
                 </div>
-                {
+                {this.props.books.length > 0 ?
                     this.props.books.map((book, index) => {
                         return <Book
                             book={book}
@@ -25,7 +25,7 @@ export default class Library extends React.Component {
                             toggleRead={this.props.toggleRead}
                         />
                     })
-                }
+                    : null}
             </div >
         )
     }
